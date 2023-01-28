@@ -42,7 +42,12 @@ export default async (req, res) => {
 
     const websiteUuid = uuid();
     const shareId = enableShareUrl ? getRandomChars(8) : null;
-    const website = await createWebsite(website_owner, { websiteUuid, name, domain, shareId });
+    const website = await createWebsite(owner ?? website_owner, {
+      websiteUuid,
+      name,
+      domain,
+      shareId,
+    });
 
     return ok(res, website);
   }
